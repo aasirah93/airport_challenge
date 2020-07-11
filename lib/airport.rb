@@ -4,6 +4,7 @@ class Airport
   end
 
   def take_off(plane)
+    return 'it has left the airport'
   end
-  
+
 end
