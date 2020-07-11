@@ -15,7 +15,14 @@ describe '#land' do
 
 describe '#take_off'
   it 'responds to take_off with 1 argument' do
+    allow(airport).to receive(:stormy?).and_return false
     expect(subject).to respond_to(:take_off).with(1).argument
+  end
+
+  it 'does not let planes take off when stormy' do
+    allow(airport).to receive(:empty?).and_return false
+    allow(airport).to receive(:stormy?).and_return true
+    expect{ subject.take_off Plane.new }.to raise_error 'Cannot take off: weather is stormy!'
 end
 end
 end
